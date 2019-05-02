@@ -22,7 +22,7 @@ for /F "tokens=* USEBACKQ" %%F IN (`cygpath %src%`) DO (set cyg_src=%%F)
 
 echo Uploading %src% to %dest%
 
-set rsync_cmd=rsync.exe -rv --size-only -e "./cygnative.exe ./plink.exe" "%cyg_src%" %CONNECT_USER%@%UPLOAD_HOST%:"%dest%"
+set rsync_cmd=rsync -rv --size-only -e "./cygnative ./plink" "%cyg_src%" %CONNECT_USER%@%UPLOAD_HOST%:"%dest%"
 echo %rsync_cmd%
 %rsync_cmd%
 
