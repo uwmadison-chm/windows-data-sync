@@ -4,7 +4,7 @@ The stuff you need to upload data from a Windows computer to a linux server
 
 ## The problem
 
-You've collected data on a Windows computer. You want to securely upload it to a linux server that stores all the data for your study. Maybe you even want to upload things to a read-only raw data directory. These tools can help.
+Your data is on a Windows computer. You want to securely upload it to a linux server that stores all the data for your study. Maybe you even want to upload things to a read-only raw data directory. These tools can help.
 
 ## What we have here
 
