@@ -10,9 +10,9 @@ Your data is on a Windows computer. You want to securely upload it to a linux se
 
 This repository contains the Windows .exe and .dll files for:
 
-* Cygwin's build of [openssh](https://www.openssh.com/)
-* Cygwin's build of [rsync](https://rsync.samba.org/)
-* plink from [PuTTY](https://putty.org/)
+* Cygwin's build of [rsync](https://rsync.samba.org/) (To transfer files)
+* Cygwin's build of [openssh](https://www.openssh.com/) (To connect to your linux server)
+* plink from [PuTTY](https://putty.org/) (Another way to connect to your server)
 * A little wrapper called [cygnative](http://diario.beerensalat.info/2009/08/18/new_cygnative_version_1_2_for_rsync_plink.html) that somehow makes it so rsync and plink can be friends.
 * Some cleaned-up and probably useful example scripts in `/examples`
 
