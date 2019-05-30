@@ -103,6 +103,14 @@ Try it out, and it should upload your data to the server, and everything should 
 
 You sure can. That's what we're doing.
 
+#### What about permissions?
+
+When uploading from windows, you may very well want to set permissions explicitly while uploading. You can use something like:
+
+```rsync --perms --chmod=F0644,D2755 ...```
+
+to set permissions to whatever you need — in this case, we'd be setting files to be read/write by the owner, readable by group and world, and directories to be read/write/list by the owner, read/list for group and world. In addition, new files and directories will be created with the parent's group.
+
 #### "sudoers files are super confusing and the documentation is worse. Help!"
 
 See this [better guide to sudo](http://toroid.org/sudoers-syntax).
