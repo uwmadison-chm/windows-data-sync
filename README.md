@@ -28,6 +28,9 @@ This should automatically use the bundled `ssh.exe` to connect as `username` to 
 * You'll be prompted for a password unless you have SSH keys set up, which is a pain with cygwin (and a bad idea if you share logins on a machine)
 * The trailing `/` for the source path tells rsync not to create `/data/dataset1/DataSet1`, but rather to copy its contents.
 * [rsync has a million options.](https://linux.die.net/man/1/rsync) `-rv` says to be recursive and verbose, so it copies all files and directories from the source and tells us about each one.
+* You may need to add `-e "./ssh"` in this case.
+* Some Windows 10 machines may refuse to create a `.ssh/known_hosts` file or 
+  read from it. Update this if you figure out how to fix that!
 
 ### rsync with plink (for passwordless login)
 
