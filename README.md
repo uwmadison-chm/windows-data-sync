@@ -6,7 +6,63 @@ The stuff you need to upload data from a Windows computer to a linux server
 
 Your data is on a Windows computer. You want to securely upload it to a linux server that stores all the data for your study. Maybe you even want to upload things to a read-only raw data directory. These tools can help.
 
-## What we have here
+## Updates in 2025
+
+Much has changed since this was created back in 2019:
+
+* Windows Subsystem for Linux is way more common than it was
+* Windows now ships a build of OpenSSH
+
+At this point, I would recommend one of two paths:
+
+### Just use WSL
+
+If you can install it (eg, you have admin rights on your computer) _and_ you don't care about using AD for authentication (eg, your data collection computer isn't joined to the target domain), **Use WSL to do this transfer.**
+
+Install it with:
+
+```
+wsl --install
+```
+
+Then, make up a bash script (`upload_data.bash`) that does your transfer normally with rsync, and make a shortcut or batch script that does:
+
+```
+wsl -e bash -c /mnt/c/something/upload_data.bash
+```
+
+Remember that you should use UNIX-style paths, and that `C:` is `/mnt/c` in WSL.
+
+### Use MSYS2, plink, and cygnative
+
+If you want to use AD for authentication, you'll need to use plink. (There's probably a way to get this working in WSL, too, but ugh.) [MSYS2](https://www.msys2.org) is a nice-ish environment that will give you .exe builds of linux tools. When using this approach, you need to watch out for the ssh.exe included with Windows -- it will not work with the rsync from MSYS2.
+
+With MSYS2 tools, your C: will be mounted at /c. Some MSYS2 executables expect UNIX paths, some expect Windows paths. I recommend explicit paths and including .exe in filenames wherever possible, so you don't run the risk of running the wrong instance of a tool.
+
+Install MSYS, start a shell, and then install `rsync` and `cygnative`:
+
+```
+pacman -S rsync
+pacman -S cygnative
+```
+
+Install plink from [the PuTTY distribution](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), and then in a .BAT or PowerShell script:
+
+```
+c:\msys2_path\usr\bin\rsync.exe -e "/c/msys2_path/usr/bin/cygnative.exe c:\plink_path\plink.exe" [options] <source> <dest>
+```
+
+I believe, but am not certain, that you could get around the need for cygnative by finding or making an mingw-w64 build of rsync.
+
+If you're doing this because you can't install WSL, you can use the MSYS2 ssh:
+
+```
+c:\msys2_path\usr\bin\rsync.exe -e /c/msys2_path/usr/bin/ssh.exe [options] <source> <dest>
+```
+
+## Older info
+
+### What do we have here?
 
 This repository contains the Windows .exe and .dll files for:
 
